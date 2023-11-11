@@ -1674,54 +1674,7 @@ a{
   margin-left:auto;
 }
 
-/* REPASO INGLÉS*/
-.titingles{
-  text-align:center;
-  color: black;
-  font-size:55px;
-  transition:0.5s;
-  font-family:'Alata', sans-serif;
-}
-.colors{
-  font-family: 'Urbanist', sans-serif;
-  font-size:45px;
-  color:black;
-}
 
-#fotocol{
-  text-align:left;
-  display:flex;
-  justify-content: space-between;
-}
-
-#contingles{
-  max-width:1000px;
-  margin:auto;
-  color:black;
-  padding:40px;
-  text-align:left;
-  background:#FFBDDC;
-  -webkit-border-radius: 10px 10px 10px 10px;
-   border-radius: 10px 10px 10px 10px;
-    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  
-}
-.titingles:hover{
-  color:#FFBDDC;
-  font-size:65px;
-}
-a{
-  color:#FC9132;
-  display:block;
-  margin:auto;
-}
-
-.textcol{
-  display: flex;
-  margin-right: auto;
-  margin-left:auto;
-}
 
 
 /* REPASO GEOGRAFÍA*/
@@ -2222,61 +2175,6 @@ button {
 
 .reset-button:focus {
   background-color: #663f68;
-}
-/* INGLES JUEGO*/
-.bodying {
-  background: #F95AAC;
-  font-family: 'Alata', sans-serif;
-}
-
-.container {
-  margin: auto;
-  height: 450px;
-  width: 700px;
-  background: #fff;
-  margin-top: 60px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.question {
-  margin-top: 50px;
-  font-size: 30px;
-}
-
-.choices {
-  margin-top: 60px;
-  margin-left: -300px;
-  font-size: 20px;
-}
-
-.choice {
-  margin-top: 10px;
-  margin-right: 15px;
-}
-
-.submit {
-  margin-top: 40px;
-  background: #BCD8B7;
-  height: 40px;
-  width: 130px;
-  border-radius: 20px;
-  border: solid 1px;
-  cursor: pointer;
-  font-family: 'Oswald', sans-serif;
-  transition: all 500ms ease-in-out;
-}
-
-.result {
-  margin-top: 20px;
-  transition: all 500ms ease-in-out;
-}
-
-.english{
-  margin-top: -120px;
-  float:left;
 }
 
 /*mat juego*/
