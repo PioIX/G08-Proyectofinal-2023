@@ -19,7 +19,8 @@ const questions = {
   7: "I _____ football yesterday.",
   8: "My teacher ____ very happy",
   9: "She _____ a picture.",
-  10: "We ______ the castle."
+  10: "We ______ the castle.",
+
 };
 
 const choices = { 
@@ -32,7 +33,7 @@ const choices = {
   7: ["play", "plays", "played", 'playing'],
   8: ['Was', 'Were', 'Are', 'being'],
   9: ['paint', 'painted ', 'is painted', 'were painting'],
-  10: ["visit", "visited", "visits", 'visiting']
+  10: ["visit", "visited", "visits", 'visiting'],
 };
 
 currentQuestion.textContent = questions[questionNum];
@@ -141,7 +142,7 @@ const checkChoice = () => {
       }
   };
   
-  button.setAttribute('value', 'Question suivante');
+  button.setAttribute('value', 'Siguiente pregunta!');
   button.setAttribute('onclick', 'nextQuestion()');
   button.style.width = '200px';
 };
@@ -157,7 +158,7 @@ const nextQuestion = () => {
     choice3.textContent = choices[questionNum][2];
     choice4.textContent = choices[questionNum][3];
   };
-  button.setAttribute('value', 'Verifier');
+  button.setAttribute('value', 'Verifica tu respuesta');
   button.setAttribute('onclick', 'checkChoice()');
   button.style.width = '130px';
   result.textContent = "";
@@ -166,6 +167,8 @@ const nextQuestion = () => {
   document.querySelector('#choice3').checked = false;
   document.querySelector('#choice4').checked = false;
 };
+
+
 
 
   
