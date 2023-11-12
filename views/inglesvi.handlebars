@@ -1,14 +1,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/inglesviii.css">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alata&display=swap" rel="stylesheet">
-
-
-<section class="game-section">
-  <h2 class="titulin">
-      <span style="color: #FF9255;">EDUC</span>
-      <span style="color: #7894FF;">ANDO</span>       
-    </h2>
-<div class="bg">
+<link href="https://fonts.googleapis.com/css2?family=Alata&family=Bebas+Neue&family=Lilita+One&family=Neuton&display=swap" rel="stylesheet">
+    <div class="wrapper fadeInDown">
+  <div id="contenidoing">
+ <div class="center"›
+      <!-- Puntitos-->
+<div class="bging">
   <div class="dotWrapper dotWrapper-1">
     <div class="dot dot-1"></div>
   </div>
@@ -235,37 +233,12 @@
     <div class="dot dot-75"></div>
   </div>
 </div>
-  <div class="owl-carousel custom-carousel owl-theme">
-    <div class="item active" style="background-image: url(https://img.freepik.com/vector-gratis/nino-contando-numeros-escritorio_1308-30971.jpg);">
-      <div class="item-desc">
-        <form action="/matjuego" method="GET">
-          <input type="submit" class="jumat" value="MATEMÁTICA">
-          <p>En este espacio, los niños aprenderán a través del juego conceptos matemáticos como sumas y restas.</p>
-        </form>
-      </div>
+    <!-- Icono -->
+    <h1 class="titulogeo">{{Pregunta}}</h1>
+    <div class="botonesing">
+        <input id="botonpreguntaIng1" type="submit" class="fadeIn fourth btn-xs" value="{{Opcion1}}" onclick="checkRespuesta(1, value, '{{Correcta}}', {{NumCorrecta}})">
+        <input id="botonpreguntaIng2" type="submit" class="fadeIn five " value="{{Opcion2}}" onclick="checkRespuesta(2, value, '{{Correcta}}', {{NumCorrecta}})">
+        <input id="botonpreguntaIng3" type="submit" class="fadeIn fourth btn-xs" value="{{Opcion3}}" onclick="checkRespuesta(3, value, '{{Correcta}}', {{NumCorrecta}})">
+   </div>
     </div>
-    <div class="item" style="background-image: url(https://cursosdeinglesengandia.es/wp-content/uploads/2018/04/istockphoto-1166112913-170667a.jpg);">
-      <div class="item-desc">
-        <form action="/inglesvi" method="GET">
-          <input type="submit" class="juing" value="INGLÉS">
-          <p>A través de nuestros juegos para aprender inglés, los niños fortalecerán el aprendizaje del verb to be.</p>
-        </form>
-      </div>
-    </div>
-    <div class="item" style="background-image: url(https://static.vecteezy.com/system/resources/previews/002/831/724/non_2x/little-school-children-studying-geography-vector.jpg);">
-      <div class="item-desc">
-        <form action="/geoinicio" method="GET">
-          <input type="submit" class="juing" value="GEOGRAFIA">
-          <p>En nuestra sección de juegos educativos de Geografía encontradas una gran variedad de divertidos juegos que servirán para que afiancen conceptos sobre geografía.</p>
-        </form>
-      </div>
-    </div>
-    <div class="item" style="background-image: url(https://static.vecteezy.com/system/resources/previews/007/375/142/non_2x/scientist-cartoon-character-with-science-lab-objects-free-vector.jpg);">
-      <div class="item-desc">
-        <h3 class="jucien">CIENCIA</h3>
-        <p>En esta sección los niños aprenderán sobre la clasificación de los animales según sus características alimenticias.</p>
-      </div>
-    </div>
-  </div>
-  </div>
-</section>
+    </form>

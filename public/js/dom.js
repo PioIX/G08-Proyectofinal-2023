@@ -22,7 +22,7 @@ async function putJSON(data) {
         document.getElementById("form1").submit()
       }
 
-    } catch (error) {
+    } catch (error){
       console.error("Error:", error);
     }
   }
@@ -59,8 +59,64 @@ function irALogin() {
   location.href = '/register'
 }
 
+/*INGLES*/
 
-/*jueg matematica*/ 
+function delay(timeInMs) {
+  return new Promise(resolve => setTimeout(resolve, timeInMs));
+}
+
+async function putJSON2 (data2){   
+  try {
+    const response2 = await fetch("/inglesvi", {
+      method: "PUT", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data2),
+    });
+    const result2 = await response2.json();
+    console.log("Success:", result2);
+
+    if (result2.chequeo == false) {
+      document.getElementById("botonpreguntaIng"+data2.numCorrecto).style.background = "lightgreen";
+      document.getElementById("botonpreguntaIng"+data2.numero).style.background = "pink";
+      document.getElementById("botonpreguntaIng1").disabled = true;
+      document.getElementById("botonpreguntaIng2").disabled = true;
+      document.getElementById("botonpreguntaIng3").disabled = true;
+      delay(5000).then(() => location.href = "/cienrepaso");
+    } else {
+        document.getElementById("botonpreguntaIng1").disabled = true;
+        document.getElementById("botonpreguntaIng2").disabled = true;
+        document.getElementById("botonpreguntaIng3").disabled = true;
+        document.getElementById("botonpreguntaIng"+data2.numero).style.background = "lightgreen";
+        delay(10).then(() => location.href = "/inglesvi");
+    }
+  } catch (error){
+      console.error("Error:", error);
+  }
+}
+function checkRespuesta(numero, elegido, correcto, numCorrecto) {
+  console.log("aca tambien entre", correcto)
+  console.log(numero, elegido, correcto, numCorrecto)
+  let data2 = {
+      numero: numero,
+      elegido: elegido,
+      correcto: correcto,
+      numCorrecto: numCorrecto
+  }
+  putJSON2(data2);
+}
+
+
+
+
+
+
+
+
+
+
+/*jueg matematica 
 const problemElement = document.querySelector(".problem")
 const ourForm = document.querySelector(".our-form")
 const ourField = document.querySelector(".our-field")
@@ -120,7 +176,7 @@ function handleSubmit(e) {
   }
   checkLogic()
 }
-/*chequea que el resultado sea siempre positivo*/
+/*chequea que el resultado sea siempre positivo
 
 function generateProblem() {
   let numberOne, numberTwo, operator, correctAnswer;
@@ -178,9 +234,4 @@ function renderProgressBar() {
   progressBar.style.transform = `scaleX(${state.score / 10})`
 }
 
-
-
-
-
-
-
+*/

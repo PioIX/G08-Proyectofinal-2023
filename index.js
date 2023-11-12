@@ -84,9 +84,6 @@ app.get("/matjuego", (req, res) => {
 app.get("/geoinicio", (req, res) => {
   res.render("geoinicio");
 });
-app.get("/ingjuego", (req, res) => {
-  res.render("ingjuego");
-});
 app.get("/deseahacer", (req, res) => {
   // Agrega aquí la lógica para mostrar la página del dashboard
   res.render("deseahacer");
@@ -103,8 +100,6 @@ app.post("/register", async (req, res) => {
   try {
     await authService.registerUser(auth, { email, password });
     await MySQL.realizarQuery(`INSERT INTO Usernamepf(nombre) VALUES (email)`)
-
-
     res.render("login", {
       message: "Registro exitoso. Puedes iniciar sesión ahora.",
     });
@@ -145,11 +140,11 @@ app.post("/login", async (req, res) => {
 });
 
 
-app.get('/ingjuego', async function(req, res)
+app.get('/inglesvi', async function(req, res)
 { console.log(req.query); 
-    let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntas WHERE materia= "ingles"`);
+    let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "ingles"`);     
     let pregfacil= Math.ceil(Math.random()*consulta.length)-1;
-    let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestas INNER JOIN Preguntas ON Respuestas.id_pregunta = Preguntas.id_pregunta WHERE Respuestas.id_pregunta = ${consulta[ingles].id_pregunta}`);
+    let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf INNER JOIN Preguntasdef ON Respuestaspf.id_pregunta = Preguntasdef.id_pregunta WHERE Respuestaspf.id_pregunta = ${consulta[pregfacil].id_pregunta}`);
     let correcta= ""
     let numCorrecta= 0
     for (let i=0; i<consulta2.length; i++) {
@@ -158,7 +153,15 @@ app.get('/ingjuego', async function(req, res)
             numCorrecta= i+1;
         }
     }
-    res.render('ingjuego', {NumCorrecta: numCorrecta, Correcta: correcta, Pregunta: consulta[pregfacil].pregunta, Opcion1:consulta2[0].respuesta, Opcion2:consulta2[1].respuesta, Opcion3:consulta2[2].respuesta});
-        
+    res.render('inglesvi', {NumCorrecta: numCorrecta, Correcta: correcta, Pregunta: consulta[pregfacil].pregunta, Opcion1:consulta2[0].respuesta, Opcion2:consulta2[1].respuesta, Opcion3:consulta2[2].respuesta});
+                                                                                                                               
+});
+app.put('/inglesvi', async function(req, res) {
+  console.log("Soy un pedido PUT /inglesvi"); 
+  if (req.body.elegido == req.body.correcto) {
+      res.send({chequeo: true});
+  } else {
+      res.send({chequeo: false});
+  }
 });
 
