@@ -276,3 +276,40 @@ function renderProgressBar() {
 }
 
 */
+
+
+//api
+
+// falta llamar la funcion clima cuando se carga la pagina de inicio
+async function clima()
+{temp ="Temperatura: " + await fetchClima()
+console.log(temp)
+//poner temp en algun elemento de la pagina para que se vea
+
+}
+
+
+
+async function fetchClima() {
+  //putJSON() es solo el nombre de esta funcion que lo pueden cambiar    
+
+  try {
+    const response = await fetch("http://ws.smn.gob.ar/map_items/weather", {
+      method: "get", // or 'POST'
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+    });
+    
+    //En result obtengo la respuesta
+    const result = await response.json();
+    console.log("Success:", result[21].weather.tempDesc
+    );
+    
+    return result[21].weather.tempDesc
+   
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
