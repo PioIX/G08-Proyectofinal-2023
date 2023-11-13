@@ -108,6 +108,47 @@ function checkRespuesta(numero, elegido, correcto, numCorrecto) {
 }
 
 
+async function putJSON3 (data3){   
+  try {
+    const response3 = await fetch("/capitales", {
+      method: "PUT", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data3),
+    });
+    const result3 = await response3.json();
+    console.log("Success:", result3);
+
+    if (result3.chequeo == false) {
+      document.getElementById("botonpreguntaGeo"+data3.numCorrecto).style.background = "lightgreen";
+      document.getElementById("botonpreguntaGeo"+data3.numero).style.background = "pink";
+      document.getElementById("botonpreguntaGeo1").disabled = true;
+      document.getElementById("botonpreguntaGeo2").disabled = true;
+      document.getElementById("botonpreguntaGeo3").disabled = true;
+      delay(5000).then(() => location.href = "/cienrepaso");
+    } else {
+        document.getElementById("botonpreguntaGeo1").disabled = true;
+        document.getElementById("botonpreguntaGeo2").disabled = true;
+        document.getElementById("botonpreguntaGeo3").disabled = true;
+        document.getElementById("botonpreguntaGeo"+data3.numero).style.background = "lightgreen";
+        delay(10).then(() => location.href = "/capitales");
+    }
+  } catch (error){
+      console.error("Error:", error);
+  }
+}
+function checkRespuesta2(numero, elegido, correcto, numCorrecto) {
+  console.log("aca tambien entre", correcto)
+  console.log(numero, elegido, correcto, numCorrecto)
+  let data3 = {
+      numero: numero,
+      elegido: elegido,
+      correcto: correcto,
+      numCorrecto: numCorrecto
+  }
+  putJSON3(data3);
+}
 
 
 
