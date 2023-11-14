@@ -285,7 +285,9 @@ async function clima()
 {temp ="Temperatura: " + await fetchClima()
 console.log(temp)
 //poner temp en algun elemento de la pagina para que se vea
-
+divClima=document.getElementById("clima")
+if (divClima){
+divClima.innerHTML = temp}
 }
 
 
