@@ -84,7 +84,6 @@ app.get("/matjuego", (req, res) => {
 app.get("/geoinicio", (req, res) => {
   res.render("geoinicio");
 });
-
 app.get("/deseahacer", (req, res) => {
   // Agrega aquí la lógica para mostrar la página del dashboard
   res.render("deseahacer");
@@ -140,11 +139,12 @@ app.post("/login", async (req, res) => {
   }
 });
 
-
+/*JUEGO INGLÉS*/
 app.get('/inglesvi', async function(req, res)
 { console.log(req.query); 
     let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "ingles"`);     
     let pregfacil= Math.ceil(Math.random()*consulta.length)-1;
+    req.session.pregfacil = pregfacil
     let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf INNER JOIN Preguntasdef ON Respuestaspf.id_pregunta = Preguntasdef.id_pregunta WHERE Respuestaspf.id_pregunta = ${consulta[pregfacil].id_pregunta}`);
     let correcta= ""
     let numCorrecta= 0
@@ -157,6 +157,15 @@ app.get('/inglesvi', async function(req, res)
     res.render('inglesvi', {NumCorrecta: numCorrecta, Correcta: correcta, Pregunta: consulta[pregfacil].pregunta, Opcion1:consulta2[0].respuesta, Opcion2:consulta2[1].respuesta, Opcion3:consulta2[2].respuesta});
                                                                                                                                
 });
+app.post('/inglesvi', async function(req, res) {
+    let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "ingles"`);     
+
+    let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf INNER JOIN Preguntasdef ON Respuestaspf.id_pregunta = Preguntasdef.id_pregunta WHERE Respuestaspf.id_pregunta = ${consulta[req.session.pregfacil].id_pregunta}`);
+    let consultapista= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf WHERE pista= "${consulta2[0].pista, consulta2[1].pista, consulta2[2].pista}"`);
+    res.send(consultapista)
+
+  });
+
 app.put('/inglesvi', async function(req, res) {
   console.log("Soy un pedido PUT /inglesvi"); 
   if (req.body.elegido == req.body.correcto) {
@@ -166,6 +175,7 @@ app.put('/inglesvi', async function(req, res) {
   }
 });
 
+/*JUEGO CAPITALES*/
 app.get('/capitales', async function(req, res)
 { console.log(req.query); 
     let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "geografia"`);     
@@ -184,6 +194,33 @@ app.get('/capitales', async function(req, res)
 });
 app.put('/capitales', async function(req, res) {
   console.log("Soy un pedido PUT /capitales"); 
+  if (req.body.elegido == req.body.correcto) {
+      res.send({chequeo: true});
+  } else {
+      res.send({chequeo: false});
+  }
+});
+
+/*JUEGO CIENCIA*/
+
+app.get('/ciencia', async function(req, res)
+{ console.log(req.query); 
+    let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "ciencia"`);     
+    let pregfacil= Math.ceil(Math.random()*consulta.length)-1;
+    let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf INNER JOIN Preguntasdef ON Respuestaspf.id_pregunta = Preguntasdef.id_pregunta WHERE Respuestaspf.id_pregunta = ${consulta[pregfacil].id_pregunta}`);
+    let correcta= ""
+    let numCorrecta= 0
+    for (let i=0; i<consulta2.length; i++) {
+        if (consulta2[i].es_correcta==true){
+            correcta= consulta2[i].respuesta;
+            numCorrecta= i+1;
+        }
+    }
+    res.render('ciencia', {NumCorrecta: numCorrecta, Correcta: correcta, Pregunta: consulta[pregfacil].pregunta, Opcion1:consulta2[0].respuesta, Opcion2:consulta2[1].respuesta, Opcion3:consulta2[2].respuesta});
+                                                                                                                               
+});
+app.put('/ciencia', async function(req, res) {
+  console.log("Soy un pedido PUT /ciencia"); 
   if (req.body.elegido == req.body.correcto) {
       res.send({chequeo: true});
   } else {

@@ -83,20 +83,20 @@ async function putJSON2 (data2){
       document.getElementById("botonpreguntaIng1").disabled = true;
       document.getElementById("botonpreguntaIng2").disabled = true;
       document.getElementById("botonpreguntaIng3").disabled = true;
-      delay(5000).then(() => location.href = "/cienrepaso");
+      delay(5000).then(() => location.href = "/ingrepaso");
     } else {
         document.getElementById("botonpreguntaIng1").disabled = true;
         document.getElementById("botonpreguntaIng2").disabled = true;
         document.getElementById("botonpreguntaIng3").disabled = true;
         document.getElementById("botonpreguntaIng"+data2.numero).style.background = "lightgreen";
-        delay(10).then(() => location.href = "/inglesvi");
+        delay(5000).then(() => location.href = "/inglesvi");
     }
   } catch (error){
       console.error("Error:", error);
   }
 }
 function checkRespuesta(numero, elegido, correcto, numCorrecto) {
-  console.log("aca tambien entre", correcto)
+  console.log("aca tambien entré", correcto)
   console.log(numero, elegido, correcto, numCorrecto)
   let data2 = {
       numero: numero,
@@ -139,7 +139,7 @@ async function putJSON3 (data3){
   }
 }
 function checkRespuesta2(numero, elegido, correcto, numCorrecto) {
-  console.log("aca tambien entre", correcto)
+  console.log("aca tambien entré", correcto)
   console.log(numero, elegido, correcto, numCorrecto)
   let data3 = {
       numero: numero,
@@ -150,7 +150,47 @@ function checkRespuesta2(numero, elegido, correcto, numCorrecto) {
   putJSON3(data3);
 }
 
+async function putJSON4 (data4){   
+  try {
+    const response2 = await fetch("/ciencia", {
+      method: "PUT", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data4),
+    });
+    const result2 = await response2.json();
+    console.log("Success:", result2);
 
+    if (result2.chequeo == false) {
+      document.getElementById("botonpreguntaCien"+data4.numCorrecto).style.background = "lightgreen";
+      document.getElementById("botonpreguntaCien"+data4.numero).style.background = "pink";
+      document.getElementById("botonpreguntaCien1").disabled = true;
+      document.getElementById("botonpreguntaCien2").disabled = true;
+      document.getElementById("botonpreguntaCien3").disabled = true;
+      delay(5000).then(() => location.href = "/cienrepaso");
+    } else {
+        document.getElementById("botonpreguntaCien1").disabled = true;
+        document.getElementById("botonpreguntaCien2").disabled = true;
+        document.getElementById("botonpreguntaCien3").disabled = true;
+        document.getElementById("botonpreguntaCien"+data4.numero).style.background = "lightgreen";
+        delay(5000).then(() => location.href = "/ciencia");
+    }
+  } catch (error){
+      console.error("Error:", error);
+  }
+}
+function checkRespuesta3(numero, elegido, correcto, numCorrecto) {
+  console.log("aca tambien entré", correcto)
+  console.log(numero, elegido, correcto, numCorrecto)
+  let data4 = {
+      numero: numero,
+      elegido: elegido,
+      correcto: correcto,
+      numCorrecto: numCorrecto
+  }
+  putJSON4(data4);
+}
 
 
 
@@ -313,5 +353,27 @@ async function fetchClima() {
    
   } catch (error) {
     console.error("Error:", error);
+  }
+}
+
+
+
+async function pidiopista(){ 
+  data5={}
+  try {
+    const response3 = await fetch("/inglesvi", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data5),
+    });
+    const result3 = await response3.json();
+    console.log("Success:", result3);
+
+    alert(result3.consultapista)
+     
+  } catch (error){
+      console.error("Error:", error);
   }
 }

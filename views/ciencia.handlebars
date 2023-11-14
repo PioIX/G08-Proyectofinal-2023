@@ -1,10 +1,12 @@
-<form action="/login" method="POST" class="container-sm" id="form1"></form>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/ciencia.css">
+<link href="https://fonts.googleapis.com/css2?family=Alata&family=Bebas+Neue&family=Lilita+One&family=Neuton&display=swap" rel="stylesheet">
     <div class="wrapper fadeInDown">
-  <div id="formregister">
+  <div id="contenidociencia">
  <div class="center"›
-
-<!-- Puntitos-->
-<div class="bg">
+      <!-- Puntitos-->
+<div class="bgcien">
   <div class="dotWrapper dotWrapper-1">
     <div class="dot dot-1"></div>
   </div>
@@ -230,20 +232,11 @@
   <div class="dotWrapper dotWrapper-75">
     <div class="dot dot-75"></div>
   </div>
-</div>
-</div>
-<div style="font-family: 'Alata', sans-serif;"id="clima"></div>
+</div> 
     <!-- Icono -->
-    <h1 class="h1edu">Ingrese</h1>
-    <div class="fadeIn first">
-     <center> <img src="/img/estudiosorosa.png" id="muñeco" alt="User Icon"/></center>
-    </div>
-   
-    <!-- Login Form -->
-    <form action="/login" method="POST">
-      <input type="text" id="usuarioId" class="fadeIn second " name="email" placeholder="Mail">
-      <input type="password" id="password" class="fadeIn second" name="password" placeholder="Contraseña">
-      <div id="diviv">
-        <input type="submit" class="fadeIn five " value="Ingresar">
+    <h1 class="titulociencia">{{Pregunta}}</h1>
+        <input id="botonpreguntaCien1" type="submit" class="fadeIn fourth btn-xs" value="{{Opcion1}}" onclick="checkRespuesta3(1, value, '{{Correcta}}', {{NumCorrecta}})">
+        <input id="botonpreguntaCien2" type="submit" class="fadeIn five " value="{{Opcion2}}" onclick="checkRespuesta3(2, value, '{{Correcta}}', {{NumCorrecta}})">
+        <input id="botonpreguntaCien3" type="submit" class="fadeIn fourth btn-xs" value="{{Opcion3}}" onclick="checkRespuesta3(3, value, '{{Correcta}}', {{NumCorrecta}})">
     </div>
     </form>
