@@ -1,0 +1,33 @@
+<H2>Agregar preguntas</H2>
+<div class="mb-3 form-check">
+    <input name="agregarPregunta" type="text" id="agregarPregunta" placeholder="Agregar Pregunta">
+</div>
+<div class="mb-3 form-check">
+    <h6>Coloque la materia: INGLES, GEOGRAFÍA, CIENCIA</h6>
+    <input name="materia" type="text" id="materia" placeholder="Materia">
+</div>
+<div class="mb-3 form-check">
+    <h6>Opcion Incorrecta 1</h6>
+    <input name="opcion1" type="text" id="opcion1" placeholder="Opcion 1">
+</div>
+<div class="mb-3 form-check">
+    <h6>Opcion Incorrecta 2</h6>
+    <input name="opcion2" type="text" id="opcion2"  placeholder="Opcion 2">
+</div>        
+<div class="mb-3 form-check">
+    <h6>Opcion Correcta</h6>
+    <input name="correcta" type="text" id="correcta" placeholder="Opcion Correcta">
+</div>
+<div class="mb-3 form-check">
+    <input type="submit" onclick="agregarPreg()" class="btn btn-primary" value="Agregar preguntas y respuestas">
+</div>
+<form action="/" method="GET" class="container-sm">
+     <div class="mb-3 form-check">
+          <input type="submit" class="btn btn-primary" value="Cerrar sesion">
+     </div>
+</form>
+<form action="/admin" method="GET" class="container-sm">
+     <div class="mb-3 form-check">
+          <input type="submit" class="btn btn-primary" value="Volver">
+     </div>
+</form>

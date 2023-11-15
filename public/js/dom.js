@@ -191,12 +191,6 @@ function checkRespuesta3(numero, elegido, correcto, numCorrecto) {
   }
   putJSON4(data4);
 }
-
-
-
-
-
-
 /*jueg matematica 
 const problemElement = document.querySelector(".problem")
 const ourForm = document.querySelector(".our-form")
@@ -317,7 +311,6 @@ function renderProgressBar() {
 
 */
 
-
 //api
 
 // falta llamar la funcion clima cuando se carga la pagina de inicio
@@ -329,7 +322,6 @@ divClima=document.getElementById("clima")
 if (divClima){
 divClima.innerHTML = temp}
 }
-
 
 
 async function fetchClima() {
@@ -486,3 +478,48 @@ async function fetchEliminarPregunta(data) {
 
 
 /*AGREGAR CONTENIDO!*/
+
+function agregarPreg() {
+  let agregarpregunta = document.getElementById("agregarPregunta").value;
+  let materia = document.getElementById("materia").value;
+  let correcta = document.getElementById("correcta").value;
+  let opcion1 = document.getElementById("opcion1").value;
+  let opcion2 = document.getElementById("opcion2").value;
+
+  let data = {
+    agregarpregunta : agregarpregunta,
+    materia : materia,
+    correcta : correcta,
+    opcion1 : opcion1,
+    opcion2 : opcion2
+  }
+  console.log("data:")
+  console.log(data)
+  fetchAgregarPregunta(data)
+}
+
+async function fetchAgregarPregunta(data) {
+  try {
+    const response = await fetch("/agregar", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    
+    //En result obtengo la respuesta
+    const result = await response.json();
+    console.log("Success:", result);
+    if (result.materia=="incorrecto" && result.validar==true){
+      alert("La materia es incorrecta, escribalo de la siguiente forma: ingles  geografia ciencia");
+    } else if (result.validar == false && result.materia=="incorrecto" ) {
+        alert("Los datos son incorrectos")
+    } else if (result.validar==true && result.materia=="correcto" ){
+        location.href = "/agregar";
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}

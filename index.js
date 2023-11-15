@@ -134,7 +134,15 @@ app.post("/login", async (req, res) => {
       res.redirect("/admin")
     }
     else{
-      res.redirect("/deseahacer");
+      let user = await MySQL.realizarQuery(`SELECT * FROM Usernamepf WHERE  nombre = '${email}'`)
+      if (user.length > 0 ) {
+        
+        res.redirect("/deseahacer");
+      } else {
+        res.render("register", {
+          message: "Error en el inicio de sesión: " + error.message,
+        });    
+      }
     }
   } catch (error) {
     console.error("Error en el inicio de sesión:", error);
@@ -250,6 +258,11 @@ app.get('/admin', function(req, res)
     res.render('admin', null); 
 });
 
+app.get('/agregar', function(req, res)
+{
+    console.log("Soy un pedido GET /agregar", req.query); 
+    res.render('agregar', null); 
+});
 
 /*FUNCIÓN EDITAR ADMIN!*/
 
@@ -309,5 +322,40 @@ app.post('/eliminar', async function(req, res)
         res.send({validar: true});
     } else {
         res.send({validar: false});
+    }
+});
+
+
+/*AGREGAR CONTENIDO!*/
+
+app.post('/agregar', async function(req, res)
+{
+    console.log("Soy un pedido POST/agregar", req.query); 
+    let pregunta = req.body.agregarpregunta;
+    let materia = req.body.materia;
+    let correcta = req.body.correcta;
+    let opcion1 = req.body.opcion1;
+    let opcion2 = req.body.opcion2;
+    function estaVacio(value) {
+        return value === undefined || value === null || value === "";
+    }
+    if (estaVacio(pregunta) || estaVacio(correcta) || estaVacio(opcion1) || estaVacio(opcion2)){
+        console.log("Completa todos los campos");
+        res.send({validar: false, materia: "incorrecto"})
+    } else {
+        if(materia != "ingles" && materia != "geografia" && materia != "ciencia") {
+            res.send ({validar: true, materia: "incorrecto"});
+        } else{
+             console.log(pregunta);
+             console.log(materia);
+            await MySQL.realizarQuery(`INSERT INTO Preguntasdef (pregunta, materia) VALUES ("${pregunta}", "${materia}")`);
+            let idpreguntanueva=await MySQL.realizarQuery(`SELECT id_pregunta FROM Preguntasdef WHERE pregunta = "${pregunta}"`)
+            console.log(idpreguntanueva[0].id_pregunta)
+            let esCorrecta = req.body.correcta === "true" ? 1 : 0;
+            await MySQL.realizarQuery(`INSERT INTO Respuestaspf(id_pregunta, respuesta, es_correcta) VALUES ("${idpreguntanueva[0].id_pregunta}", "${req.body.correcta}", true)`);
+            await MySQL.realizarQuery(`INSERT INTO Respuestaspf(id_pregunta, respuesta, es_correcta) VALUES ("${idpreguntanueva[0].id_pregunta}", "${req.body.opcion1}", false)`);
+            await MySQL.realizarQuery(`INSERT INTO Respuestaspf(id_pregunta, respuesta, es_correcta) VALUES ("${idpreguntanueva[0].id_pregunta}", "${req.body.opcion2}", false)`);
+            res.send({validar: true, materia: "correcto"});
+            }
     }
 });
