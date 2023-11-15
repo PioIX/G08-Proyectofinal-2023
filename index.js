@@ -97,13 +97,12 @@ app.get("/editar", (req, res) => {
   res.render("editar");
 });
 
-
 app.post("/register", async (req, res) => {
   const { email, password } = req.body;
 
   try {
     await authService.registerUser(auth, { email, password });
-    await MySQL.realizarQuery(`INSERT INTO Usernamepf(nombre) VALUES (email)`)
+    await MySQL.realizarQuery(`INSERT INTO Usernamepf(nombre) VALUES ('${email}')`)
     res.render("login", {
       message: "Registro exitoso. Puedes iniciar sesión ahora.",
     });
@@ -162,14 +161,12 @@ app.get('/inglesvi', async function(req, res)
                                                                                                                                
 });
 app.post('/inglesvi', async function(req, res) {
-    let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "ingles"`);     
-
+    let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "ingles"`);   
     let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf INNER JOIN Preguntasdef ON Respuestaspf.id_pregunta = Preguntasdef.id_pregunta WHERE Respuestaspf.id_pregunta = ${consulta[req.session.pregfacil].id_pregunta}`);
-    let consultapista= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf WHERE pista= "${consulta2[0].pista, consulta2[1].pista, consulta2[2].pista}"`);
+    let consultapista= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf WHERE pista= '${consulta2[0].pista, consulta2[1].pista, consulta2[2].pista}'`);
     res.send(consultapista)
-
   });
-
+ 
 app.put('/inglesvi', async function(req, res) {
   console.log("Soy un pedido PUT /inglesvi"); 
   if (req.body.elegido == req.body.correcto) {
@@ -230,4 +227,85 @@ app.put('/ciencia', async function(req, res) {
   } else {
       res.send({chequeo: false});
   }
+});
+
+/*PEDIDOS GENERALES ADMIN!*/
+app.get('/agregar', function(req, res)
+{
+    console.log("Soy un pedido GET /agregar", req.query); 
+    res.render('agregar', null); 
+});
+
+app.get('/editar', function(req, res)
+{
+    console.log("Soy un pedido GET /editar", req.query); 
+    res.render('editar', null); 
+});
+
+app.get('/admin', function(req, res)
+{
+    console.log("Soy un pedido GET /admin", req.query); 
+    res.render('admin', null); 
+});
+
+
+/*FUNCIÓN EDITAR ADMIN!*/
+
+// Muestra la pregunta!
+app.post('/mostrarpregunta',async function(req, res){
+  let id_pregunta = req.body.id_pregunta;
+  console.log("Soy un pedido POST/mostrarpregunta", req.body); 
+  if(id_pregunta == ""){
+      console.log("Completa todos los campos")
+      res.send({validar: false}); 
+  } else{
+      let pregunta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE id_pregunta = ${req.body.id_pregunta};`)
+      console.log(pregunta);
+      res.send({validar: true, pregunta: pregunta}); 
+  }
+});
+
+// Modificar!
+app.post('/editar', async function(req, res)
+{
+   function estaVacio(value) {
+       return value === undefined || value === null || value === "";
+   }
+   console.log("ESTOY EDITANDO PREG");
+  let id_pregunta = req.body.id_pregunta;
+  let pregunta = req.body.pregunta;
+  console.log("Soy un pedido POST/editarpreg", req.body);
+  console.log(id_pregunta);
+  console.log(pregunta);
+  if(estaVacio(id_pregunta) || id_pregunta==0 || estaVacio(pregunta)){
+      console.log("Completa todos los campos")
+      res.send({validar: false});
+  } else{
+      await MySQL.realizarQuery(`UPDATE Preguntasdef SET pregunta = '${pregunta}'  WHERE id_pregunta = ${id_pregunta};`);
+      console.log(await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE id_pregunta = ${id_pregunta};`))
+      res.send({validar: true});
+  }   
+});
+
+
+/*ELIMINAR!*/
+app.get('/eliminar', function(req, res)
+{
+    console.log("Soy un pedido GET /eliminar", req.query); 
+    res.render('eliminar', null);
+});
+
+app.post('/eliminar', async function(req, res)
+{  
+    console.log("Soy un pedido POST /eliminar", req.query); 
+    let idd = req.body.idPregunta; 
+    console.log(idd)
+    let consulta = await MySQL.realizarQuery(`SELECT id_pregunta FROM Preguntasdef WHERE id_pregunta = ${idd}`);
+    if (consulta.length>0) {
+        await MySQL.realizarQuery(`DELETE FROM Respuestaspf WHERE id_pregunta = ${idd}`);
+        await MySQL.realizarQuery(`DELETE FROM Preguntasdef WHERE id_pregunta = ${idd}`);
+        res.send({validar: true});
+    } else {
+        res.send({validar: false});
+    }
 });

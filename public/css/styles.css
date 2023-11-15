@@ -4768,3 +4768,24 @@ box-sizing: border-box;
   font-size: 16px;
   justify-content: flex-start;
 }
+
+
+
+/*eliminar*/
+
+#CONTENIDOEDITAR{
+  align-content: center;
+  padding-top: 100px;
+  font-family: 'Alata';
+  line-height:0;
+}
+.imagenelim{
+  size: 2em;
+  width: 30%;
+}
+
+#cerrarsesion{
+  text-align: center;
+  margin-left: 675px;
+}
+

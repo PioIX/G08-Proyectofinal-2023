@@ -1,0 +1,17 @@
+<form action="/admin" method="GET" class="container-sm">
+    <h4>Pregunta seleccionada: </h4>
+        <div class="mb-3 form-check">
+            <input name="id_pregmod" id="id_pregmod" type="number" onchange="mostrarPreg()">
+        </div>
+        <div class="mb-3 form-check">
+            <input name="pregunta" id="pregunta">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="button" class="btn btn-primary" value="Modificar pregunta" onclick="modificarPreg()">
+        </div>
+    </form>
+<form action="/" method="GET" class="container-sm">
+     <div class="mb-3 form-check">
+          <input type="submit" class="btn btn-primary" value="Cerrar sesion">
+     </div>
+</form>

@@ -341,9 +341,7 @@ async function fetchClima() {
       headers: {
         "Content-Type": "application/json",
       },
-
-    });
-    
+    });    
     //En result obtengo la respuesta
     const result = await response.json();
     console.log("Success:", result[21].weather.tempDesc
@@ -358,22 +356,133 @@ async function fetchClima() {
 
 
 
-async function pidiopista(){ 
-  data5={}
+async function pidiopista(data){ 
   try {
     const response3 = await fetch("/inglesvi", {
       method: "POST", 
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data5),
+      body: JSON.stringify(data),
     });
     const result3 = await response3.json();
     console.log("Success:", result3);
-
-    alert(result3.consultapista)
-     
+    alert(result3[0].pista)
   } catch (error){
       console.error("Error:", error);
   }
 }
+
+
+/*FUNCIÓN EDITAR CONTENIDO ADMIN!*/
+
+async function mostrarPutJSON(data) {
+  try {
+    const response = await fetch("/mostrarPregunta", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    
+    const result = await response.json();
+    console.log("Success:", result);
+    if (result.validar == true) {
+      document.getElementById("pregunta").value = result.pregunta[0].pregunta;  
+    }
+    else{
+      document.getElementById("pregunta").value = "";  
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+//Esta funcion la llama el boton Ingresar que tiene que ser type button para ejecutar el onclick
+function mostrarPreg() {
+  let id_pregunta = document.getElementById("id_pregmod").value
+  let data = {
+    id_pregunta: id_pregunta,
+  }
+  console.log(data)
+  mostrarPutJSON(data)
+}
+
+async function modificarPutJSON(data) {
+  try {
+    const response = await fetch("/editar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await response.json();
+    console.log("Success:", result);
+    if (result.validar == false) {
+      alert("Complete los campos");  
+    }
+    else{
+      document.getElementById("pregunta").value = ""
+      location.href = "/editar";  
+    }
+    
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+function modificarPreg() {
+  let id_pregunta = document.getElementById("id_pregmod").value
+  let pregunta = document.getElementById("pregunta").value
+  let data = {
+    pregunta : pregunta,
+    id_pregunta: id_pregunta
+  }
+  console.log(data)
+  modificarPutJSON(data)
+}
+
+
+
+/*FUNCIÓN ELIMINAR ADMIN!*/
+
+function eliminarPregunta() {
+  let id = document.getElementById("idPregunta").value
+  let data = {
+    idPregunta: id
+  }
+  console.log(data) 
+  fetchEliminarPregunta(data)
+}
+
+async function fetchEliminarPregunta(data) {
+
+  try {
+    const response = await fetch("/eliminar", {
+      method: "POST", // or 'POST'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    
+    //En result obtengo la respuesta
+    const result = await response.json();
+    console.log("Success:", result);
+
+    if (result.validar == false) {
+      alert("No existe una pregunta con ese ID")
+    } else {
+      location.href = "/eliminar"
+      
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+} 
+
+
+/*AGREGAR CONTENIDO!*/
