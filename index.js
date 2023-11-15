@@ -73,7 +73,7 @@ app.get("/georepaso", (req, res) => {
 app.get("/cienrepaso", (req, res) => {
   res.render("cienrepaso");
 });
-app.post("/repaso", (req, res) => {
+app.get("/repaso", (req, res) => {
   res.render("repaso");
 });
 app.get("/juega", (req, res) => {
@@ -264,6 +264,12 @@ app.get('/agregar', function(req, res)
     res.render('agregar', null); 
 });
 
+app.get('/eliminadmin', function(req, res)
+{
+    console.log("Soy un pedido GET /eliminar", req.query); 
+    res.render('eliminadmin', null);
+});
+
 /*FUNCIÓN EDITAR ADMIN!*/
 
 // Muestra la pregunta!
@@ -311,7 +317,7 @@ app.get('/eliminar', function(req, res)
 });
 
 app.post('/eliminar', async function(req, res)
-{  
+{
     console.log("Soy un pedido POST /eliminar", req.query); 
     let idd = req.body.idPregunta; 
     console.log(idd)
@@ -358,4 +364,18 @@ app.post('/agregar', async function(req, res)
             res.send({validar: true, materia: "correcto"});
             }
     }
+});
+
+/* ELIMINAR USUARIOS!*/
+app.post('/eliminadmin', async function(req, res)
+{ 
+    console.log("Soy un pedido POST /eliminadmin", req.query); 
+    let email = req.body.idusuario; 
+    let user = await MySQL.realizarQuery(`SELECT * FROM Usernamepf WHERE  nombre = ('${email}')`)
+    if (user.length>0) {
+      await MySQL.realizarQuery(`DELETE FROM Usernamepf WHERE nombre = '${email}'`);
+      res.send({validar: true});
+  } else {
+      res.send({validar: false});
+} 
 });

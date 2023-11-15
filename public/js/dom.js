@@ -26,7 +26,7 @@ async function putJSON(data) {
       console.error("Error:", error);
     }
   }
-
+ 
   //Esta funcion la llama el boton Ingresar que tiene que ser type button para ejecutar el onclick
   function login() {
     //Leo los datos del input
@@ -438,6 +438,45 @@ function modificarPreg() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*FUNCIÓN ELIMINAR ADMIN!*/
 
 function eliminarPregunta() {
@@ -475,6 +514,60 @@ async function fetchEliminarPregunta(data) {
     console.error("Error:", error);
   }
 } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*AGREGAR CONTENIDO!*/
@@ -523,3 +616,39 @@ async function fetchAgregarPregunta(data) {
     console.error("Error:", error);
   }
 }
+
+/*FUNCION ELIMINAR USUARIOS!*/
+function eliminarUsuarios() {
+  let id = document.getElementById("idusuario").value
+  let data = {
+    idusuario: id
+  }
+  console.log(data) 
+  fetchEliminarUsuarios(data)
+}
+
+async function fetchEliminarUsuarios(data) {
+  
+  try {
+    const response = await fetch("/eliminadmin", {
+      method: "POST", // or 'POST'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    
+    //En result obtengo la respuesta
+    const result = await response.json();
+    console.log("Success:", result);
+
+    if (result.validar == false) {
+      alert("No existe un usuario con ese email.")
+    } else {
+      location.href = "/eliminadmin"      
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+} 

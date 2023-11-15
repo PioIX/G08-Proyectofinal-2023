@@ -58,6 +58,7 @@ a {
   align-items: center;
   height: 50vh; 
   flex-direction:column;
+  margin-top: 50px;
 }
 /* TABS */
 
