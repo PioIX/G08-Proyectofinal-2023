@@ -88,6 +88,8 @@ app.get("/pistamat", (req, res) => {
 app.get("/geoinicio", (req, res) => {
   res.render("geoinicio");
 });
+
+
 app.get("/deseahacer", (req, res) => {
   // Agrega aquí la lógica para mostrar la página del dashboard
   res.render("deseahacer");
