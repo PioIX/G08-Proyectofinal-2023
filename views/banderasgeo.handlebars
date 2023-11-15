@@ -1,13 +1,95 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="css/inglesviii.css">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alata&family=Bebas+Neue&family=Lilita+One&family=Neuton&display=swap" rel="stylesheet">
-    <div class="wrapper fadeInDown">
-  <div id="contenidoing">
- <div class="center"› 
- <div style="font-family: 'Alata', sans-serif;"id="clima"></div>
-      <!-- Puntitos--> 
-<div class="bging">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/geobanderas.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400;700&display=swap">
+    <title>Aprende las banderas</title>
+</head>
+ 
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="init-page">
+    <div class="container">
+        <h1 class="titulop">¡Memoriza las banderas!</h1>
+        <p class="init-page__icon ion-earth"></p>
+        <button class="init-page__btn btn">Comienza el juego</button>
+    </div>
+</div>
+
+<div class="questions-page">
+    <div class="container">
+        <h2 class="questions-page__question"></h2>
+        <ul class="questions-page__answer-list">
+        <img id="question-image">
+            <!--  Letter A  -->
+            <!--  Answer div  -->
+            <div class="questions-page__answer-div questions-page__answer-div-a">
+                <!--  Selector div  -->
+                <div class="questions-page__selection-div"></div>
+                <!--  Feedback div -->
+                <div class="questions-page__feedback-div"></div>
+                <!--  Answer -->
+                <li class="questions-page__answer-line">A) <span class="questions-page__answer-span questions-page__answer-A"></span></li>
+            </div>
+
+            <!--  Letter B  -->
+            <!--  Answer div  -->
+            <div class="questions-page__answer-div questions-page__answer-div-b">
+                <!--  Selector div  -->
+                <div class="questions-page__selection-div"></div>
+                <!--  Feedback div -->
+                <div class="questions-page__feedback-div"></div>
+                <!--  Answer -->
+                <li class="questions-page__answer-line">B) <span class="questions-page__answer-span questions-page__answer-B"></span></li>
+            </div>
+
+            <!--  Letter C  -->
+            <!--  Answer div  -->
+            <div class="questions-page__answer-div questions-page__answer-div-c">
+                <!--  Selector div  -->
+                <div class="questions-page__selection-div"></div>
+                <!--  Feedback div -->
+                <div class="questions-page__feedback-div"></div>
+                <!--  Answer -->
+                <li class="questions-page__answer-line">C) <span class="questions-page__answer-span questions-page__answer-C"></span></li>
+            </div>
+
+            <!--  Letter D  -->
+            <!--  Answer div  -->
+            <div class="questions-page__answer-div questions-page__answer-div-d">
+                <!--  Selector div  -->
+                <div class="questions-page__selection-div"></div>
+                <!--  Feedback div -->
+                <div class="questions-page__feedback-div"></div>
+                <!--  Answer -->
+                <li class="questions-page__answer-line">D) <span class="questions-page__answer-span questions-page__answer-D"></span></li>
+            </div>
+        </ul>
+
+        <!--  ICON NAMES: x is   ion-close-round  , check is   ion-checkmark-round-->
+        <div class="btn-holder">
+            <button class="questions-page__submit-btn btn" style="margin-top:-5%">Enviar respuesta</button>
+            <button class="questions-page__continue-btn btn"style="margin-top:-5%">Continua</button>
+        </div>
+    </div>
+</div>
+
+<div class="results-page">
+    <div class="container">
+        <h3 class="results-page__info">Tu puntaje final es de:</h3>
+        <h2 class="results-page__score">100%</h2>
+   <h3 class="results-page__info">Sigue repasando y vuelve más tarde</h3>
+        <button class="results-page__retake-btn btn">Juega de nuevo</button>
+       <form action="/georepaso" method="GET">
+          <input type="submit" class="fadeIn five " onclick='window.location.replace("/georepaso")' value="Repasa tus conocimientos">
+        </form>
+    </div>
+</div>
+<div class="bggeo">
+   <!-- Puntitos-->
+<div class="bgrepcien">
   <div class="dotWrapper dotWrapper-1">
     <div class="dot dot-1"></div>
   </div>
@@ -233,15 +315,5 @@
   <div class="dotWrapper dotWrapper-75">
     <div class="dot dot-75"></div>
   </div>
-</div>
-    <!-- Icono -->
-    <h1 class="titulogeo">{{Pregunta}}</h1>
-    <div class="botonesing">
-        <input id="botonpreguntaIng1" type="submit" class="fadeIn fourth btn-xs" value="{{Opcion1}}" onclick="checkRespuesta(1, value, '{{Correcta}}', {{NumCorrecta}})">
-        <input id="botonpreguntaIng2" type="submit" class="fadeIn five " value="{{Opcion2}}" onclick="checkRespuesta(2, value, '{{Correcta}}', {{NumCorrecta}})">
-        <input id="botonpreguntaIng3" type="submit" class="fadeIn fourth btn-xs" value="{{Opcion3}}" onclick="checkRespuesta(3, value, '{{Correcta}}', {{NumCorrecta}})">
-        <input id="pista" type="submit" class="fadeIn fourth btn-xs" value="PISTA" onclick="pidiopista()">
-   </div>
-    </div>
-    </form>
-<input style="margin-left: 85%; font-size: 20px; background-color: #E6B0AA; margin-top: 43%;" type="button" class="fadeIn first" onclick='window.location.replace("/pistaingles")' value="PISTA">
+</div> 
+ 
