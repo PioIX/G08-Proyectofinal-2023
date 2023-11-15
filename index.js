@@ -81,6 +81,9 @@ app.get("/juega", (req, res) => {
 app.get("/matjuego", (req, res) => {
   res.render("matjuego");
 });
+app.get("/pistamat", (req, res) => {
+  res.render("pistamat");
+});
 app.get("/geoinicio", (req, res) => {
   res.render("geoinicio");
 });
