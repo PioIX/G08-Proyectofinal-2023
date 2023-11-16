@@ -797,6 +797,20 @@ async function fetchClima() {
   }
 }
 
+// Función para actualizar el clima
+async function actualizarClima() {
+  const clima = await fetchClima();
+
+  if (clima) {
+    console.log("Clima actualizado:", clima[21].weather.tempDesc);
+  } else {
+    console.log("No se pudo obtener la información del clima.");
+  }
+}
+
+// Actualizar el clima cada 10 minutos (600,000 milisegundos)
+setInterval(actualizarClima, 600000);
+
 
 
 async function pidiopista(data){ 
