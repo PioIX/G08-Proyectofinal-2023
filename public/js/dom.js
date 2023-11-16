@@ -787,10 +787,9 @@ try {
   });    
   //En result obtengo la respuesta
   const result = await response.json();
-  console.log("Success:", result[21].weather.tempDesc
-  );
-  
-  return result[21].weather.tempDesc
+  let capi = result.find((ciudad)=> ciudad.name === "Capital Federal");
+  console.log(capi.weather.tempDesc);
+  return capi.weather.tempDesc
  
 } catch (error) {
   console.error("Error:", error);
