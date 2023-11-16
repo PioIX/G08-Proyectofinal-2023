@@ -54,18 +54,20 @@ h2 {
   padding: 20px;
 }
 
+  
 #formlogin {
-  -webkit-border-radius: 10px 10px 10px 10px;
-  border-radius: 10px 10px 10px 10px;
-  background: #ED9837 ;
-  padding: 30px;
-  width: 90%;
-  max-width: 450px;
-  position: relative;
-  padding: 0px;
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  text-align: center;
+    display: inline-block;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 20px 10px 10px 10px;
+    background: #ED9837;
+    padding: 30px;
+    width: 90%;
+    position: relative;
+    max-width: 580px;
+    padding: 0px;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    text-align: center;
 }
 
 #formFooter {
@@ -1032,13 +1034,14 @@ width: 20rem;
   padding-right: 200px;
  }
  
- #diviv{
-  display:flex;
-    justify-content: space-between;
+#diviv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 85%;
-    margin: 40px;
-    padding-left: 106px
-   }
+    margin: 10px;
+    padding-left: 47px;
+}
 
    
 #muñeco {

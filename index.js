@@ -66,7 +66,9 @@ app.get("/matrepaso", (req, res) => {
 app.get("/ingrepaso", (req, res) => {
   res.render("ingrepaso");
 });
-
+app.get("/repaso", (req, res) => {
+  res.render("repaso");
+});
 app.get("/georepaso", (req, res) => {
   res.render("georepaso");
 });
