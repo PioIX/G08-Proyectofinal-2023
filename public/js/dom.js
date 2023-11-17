@@ -602,6 +602,7 @@ let data3 = {
 putJSON3(data3);
 }
 
+/*CIENCIA*/
 async function putJSON4 (data4){   
 try {
   const response2 = await fetch("/ciencia", {
@@ -928,50 +929,49 @@ try {
 /*AGREGAR CONTENIDO!*/
 
 function agregarPreg() {
-let agregarpregunta = document.getElementById("agregarPregunta").value;
-let materia = document.getElementById("materia").value;
-let correcta = document.getElementById("correcta").value;
-let opcion1 = document.getElementById("opcion1").value;
-let opcion2 = document.getElementById("opcion2").value;
+  let agregarpregunta = document.getElementById("agregarPregunta").value;
+  let materia = document.getElementById("materia").value;
+  let correcta = document.getElementById("correcta").value;
+  let opcion1 = document.getElementById("opcion1").value;
+  let opcion2 = document.getElementById("opcion2").value;
 
-let data = {
-  agregarpregunta : agregarpregunta,
-  materia : materia,
-  correcta : correcta,
-  opcion1 : opcion1,
-  opcion2 : opcion2
-}
-console.log("data:")
-console.log(data)
-fetchAgregarPregunta(data)
+  let data = {
+    agregarpregunta : agregarpregunta,
+    materia : materia,
+    correcta : correcta,
+    opcion1 : opcion1,
+    opcion2 : opcion2
+  }
+  console.log("data:")
+  console.log(data)
+  fetchAgregarPregunta(data)
 }
 
 async function fetchAgregarPregunta(data) {
-try {
-  const response = await fetch("/agregar", {
-    method: "POST", 
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  
-  //En result obtengo la respuesta
-  const result = await response.json();
-  console.log("Success:", result);
-  if (result.materia=="incorrecto" && result.validar==true){
-    alert("La materia es incorrecta, escribalo de la siguiente forma: ingles  geografia ciencia");
-  } else if (result.validar == false && result.materia=="incorrecto" ) {
-      alert("Los datos son incorrectos")
-  } else if (result.validar==true && result.materia=="correcto" ){
-      location.href = "/agregar";
+  try {
+    const response = await fetch("/agregar", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    
+    //En result obtengo la respuesta
+    const result = await response.json();
+    console.log("Success:", result);
+    if (result.materia=="incorrecto" && result.validar==true){
+      alert("La materia es incorrecta, escribalo de la siguiente forma: ingles  geografia ciencia");
+    } else if (result.validar == false && result.materia=="incorrecto" ) {
+        alert("Los datos son incorrectos")
+    } else if (result.validar==true && result.materia=="correcto" ){
+        location.href = "/agregar";
+    }
+
+  } catch (error) {
+    console.error("Error:", error);
   }
-
-} catch (error) {
-  console.error("Error:", error);
 }
-}
-
 /*FUNCION ELIMINAR USUARIOS!*/
 function eliminarUsuarios() {
 let id = document.getElementById("idusuario").value
@@ -980,7 +980,7 @@ let data = {
 }
 console.log(data) 
 fetchEliminarUsuarios(data)
-}
+};
 
 async function fetchEliminarUsuarios(data) {
 

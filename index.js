@@ -105,6 +105,7 @@ app.get("/editar", (req, res) => {
 
 app.post("/register", async (req, res) => {
   const { email, password } = req.body;
+  
 
   try {
     await authService.registerUser(auth, { email, password });
@@ -133,6 +134,7 @@ app.post("/login", async (req, res) => {
       email,
       password,
     });
+    
     // Aquí puedes redirigir al usuario a la página que desees después del inicio de sesión exitoso
     if (email == "mvortega@pioix.edu.ar"){
       res.redirect("/admin")
@@ -140,7 +142,6 @@ app.post("/login", async (req, res) => {
     else{
       let user = await MySQL.realizarQuery(`SELECT * FROM Usernamepf WHERE  nombre = '${email}'`)
       if (user.length > 0 ) {
-        
         res.redirect("/deseahacer");
       } else {
         res.render("register", {
@@ -237,19 +238,28 @@ app.get('/ciencia', async function(req, res)
 app.put('/ciencia', async function(req, res) {
   console.log("Soy un pedido PUT /ciencia"); 
   if (req.body.elegido == req.body.correcto) {
+      //await MySQL.realizarQuery(`UPDATE Estadisticaspf SET nota= nota+3 WHERE id_usuario="${req.session.id_usuario}" AND id_materia= "ciencia"`);
       res.send({chequeo: true});
   } else {
       res.send({chequeo: false});
   }
 });
 
-/*PEDIDOS GENERALES ADMIN!*/
-app.get('/agregar', function(req, res)
-{
-    console.log("Soy un pedido GET /agregar", req.query); 
-    res.render('agregar', null); 
-});
 
+/*ESTADISTICA CIENCIA
+app.get('/estadisticaciencia', async function(req, res)
+{
+    console.log("soy un pedido GET /estadisticaciencia");
+    consulta = await MySQL.realizarQuery(`SELECT * FROM Estadisticaspf ORDER BY nota DESC LIMIT 3`);
+    let vector = [];
+    for (let i=0; i<consulta.length; i++) {
+        let consulta2= await MySQL.realizarQuery(`SELECT nombre FROM Usernamepf INNER JOIN Estadisticaspf ON Usernamepf.id_usuario=Estadisticaspf.id_usuario WHERE Usernamepf.id_usuario = ${consulta[i].id_usuario}`);
+        vector.push(consulta2[0].nombre);
+    }
+    res.render('estadisticaciencia', {nombreUser1: vector[0], puntuacion1: consulta[0].nota, puntuacion2: consulta[1].nota, puntuacion3: consulta[2].nota}); 
+});
+*/
+/*PEDIDOS GENERALES ADMIN!*/
 app.get('/editar', function(req, res)
 {
     console.log("Soy un pedido GET /editar", req.query); 
@@ -337,6 +347,11 @@ app.post('/eliminar', async function(req, res)
 
 
 /*AGREGAR CONTENIDO!*/
+app.get('/agregar', function(req, res)
+{
+    console.log("Soy un pedido GET /agregar", req.query); 
+    res.render('agregar', null); 
+});
 
 app.post('/agregar', async function(req, res)
 {
@@ -354,8 +369,10 @@ app.post('/agregar', async function(req, res)
         res.send({validar: false, materia: "incorrecto"})
     } else {
         if(materia != "ingles" && materia != "geografia" && materia != "ciencia") {
+            console.log("materiaincorrecta")
             res.send ({validar: true, materia: "incorrecto"});
         } else{
+            console.log("materiacorrecta")
              console.log(pregunta);
              console.log(materia);
             await MySQL.realizarQuery(`INSERT INTO Preguntasdef (pregunta, materia) VALUES ("${pregunta}", "${materia}")`);
