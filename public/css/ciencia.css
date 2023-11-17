@@ -28,7 +28,10 @@ a {
   padding: 20px;
 
 }
-
+.botonesciencia{
+  display-flex:space-between;
+  margin-top:400px;
+}
 #contenidociencia {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;

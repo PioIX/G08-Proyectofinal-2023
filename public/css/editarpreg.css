@@ -7,8 +7,13 @@ margin-left: 10px; bottom: 0; left: 0;"
   font-family: 'Bebas Neue', sans-serif;
   font-size: 70px;
   margin: 0; /* Elimina el margen predeterminado del h2 */
+  color:black;
 }
 
+.botoneseditar{
+  display-flex:space-between;
+  margin-top:300px;
+}
 #CONTENIDOEDITAR {
   -webkit-border-radius: 10px;
   border-radius: 10px;
@@ -28,6 +33,7 @@ margin-left: 10px; bottom: 0; left: 0;"
   display: flex; /* Usa flexbox para centrar verticalmente */
   flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
   justify-content: center; /* Centra verticalmente los elementos hijos */
+  overflow: hidden;
 }
 
 /* PUNTITOS*/

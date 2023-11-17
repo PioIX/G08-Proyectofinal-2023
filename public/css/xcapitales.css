@@ -29,7 +29,10 @@ min-height: 100%;
 padding: 20px;
 
 }
-
+.botonescapitales{
+  display-flex:space-between;
+  margin-top:300px;
+}
 #contenido {
 -webkit-border-radius: 10px 10px 10px 10px;
 border-radius: 10px 10px 10px 10px;

@@ -535,13 +535,13 @@ try {
     document.getElementById("botonpreguntaIng1").disabled = true;
     document.getElementById("botonpreguntaIng2").disabled = true;
     document.getElementById("botonpreguntaIng3").disabled = true;
-    delay(5000).then(() => location.href = "/ingrepaso");
+    delay(4000).then(() => location.href = "/ingrepaso");
   } else {
       document.getElementById("botonpreguntaIng1").disabled = true;
       document.getElementById("botonpreguntaIng2").disabled = true;
       document.getElementById("botonpreguntaIng3").disabled = true;
       document.getElementById("botonpreguntaIng"+data2.numero).style.background = "lightgreen";
-      delay(5000).then(() => location.href = "/inglesvi");
+      delay(4000).then(() => location.href = "/inglesvi");
   }
 } catch (error){
     console.error("Error:", error);
@@ -578,13 +578,13 @@ try {
     document.getElementById("botonpreguntaGeo1").disabled = true;
     document.getElementById("botonpreguntaGeo2").disabled = true;
     document.getElementById("botonpreguntaGeo3").disabled = true;
-    delay(5000).then(() => location.href = "/cienrepaso");
+    delay(4000).then(() => location.href = "/georepaso");
   } else {
       document.getElementById("botonpreguntaGeo1").disabled = true;
       document.getElementById("botonpreguntaGeo2").disabled = true;
       document.getElementById("botonpreguntaGeo3").disabled = true;
       document.getElementById("botonpreguntaGeo"+data3.numero).style.background = "lightgreen";
-      delay(10).then(() => location.href = "/capitales");
+      delay(4000).then(() => location.href = "/capitales");
   }
 } catch (error){
     console.error("Error:", error);
@@ -621,13 +621,13 @@ try {
     document.getElementById("botonpreguntaCien1").disabled = true;
     document.getElementById("botonpreguntaCien2").disabled = true;
     document.getElementById("botonpreguntaCien3").disabled = true;
-    delay(5000).then(() => location.href = "/cienrepaso");
+    delay(4000).then(() => location.href = "/cienrepaso");
   } else {
       document.getElementById("botonpreguntaCien1").disabled = true;
       document.getElementById("botonpreguntaCien2").disabled = true;
       document.getElementById("botonpreguntaCien3").disabled = true;
       document.getElementById("botonpreguntaCien"+data4.numero).style.background = "lightgreen";
-      delay(5000).then(() => location.href = "/ciencia");
+      delay(4000).then(() => location.href = "/ciencia");
   }
 } catch (error){
     console.error("Error:", error);
@@ -816,6 +816,39 @@ try {
 }
 }
 
+async function pidiopistageo(data){ 
+  try {
+    const response3 = await fetch("/capitales", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const result3 = await response3.json();
+    console.log("Success:", result3);
+    alert(result3[0].pista)
+  } catch (error){
+      console.error("Error:", error);
+  }
+}
+async function pidiopistaciencia(data){ 
+  try {
+    const response3 = await fetch("/ciencia", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const result3 = await response3.json();
+    console.log("Success:", result3);
+    alert(result3[0].pista)
+  } catch (error){
+      console.error("Error:", error);
+  }
+}
+   
 
 /*FUNCIÓN EDITAR CONTENIDO ADMIN!*/
 

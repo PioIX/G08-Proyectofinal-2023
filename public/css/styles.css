@@ -1085,7 +1085,6 @@ width: 20rem;
 body {
 font-family:'Alata', sans-serif;  ;
 height: 100vh;
-overflow: hidden;
 }
 
 a {
@@ -1121,6 +1120,8 @@ box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
 text-align: center;
 margin-left: 32%;
 margin-top: 250px;
+
+overflow: hidden;
 }
 
 #formFooter {
@@ -1761,12 +1762,15 @@ button {
   color: black;
   background: #FECACA;
 }
+.botonesmatematica{
+  display-flex:space-between;
+}
+
 .main-ui {
   max-width: 800px;
   margin: 0 auto;
   margin-top: 200px;
 }
-
 .our-form {
   display: flex;
   justify-content: center;

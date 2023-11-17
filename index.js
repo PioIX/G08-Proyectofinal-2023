@@ -93,7 +93,9 @@ app.get("/geoinicio", (req, res) => {
 app.get("/banderasgeo", (req, res) => {
   res.render("banderasgeo");
 });
-
+app.get("/pistaingles", (req, res) => {
+  res.render("pistaingles");
+});
 app.get("/deseahacer", (req, res) => {
   // Agrega aquí la lógica para mostrar la página del dashboard
   res.render("deseahacer");
@@ -196,6 +198,7 @@ app.get('/capitales', async function(req, res)
 { console.log(req.query); 
     let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "geografia"`);     
     let pregfacil= Math.ceil(Math.random()*consulta.length)-1;
+    req.session.pregfacil = pregfacil
     let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf INNER JOIN Preguntasdef ON Respuestaspf.id_pregunta = Preguntasdef.id_pregunta WHERE Respuestaspf.id_pregunta = ${consulta[pregfacil].id_pregunta}`);
     let correcta= ""
     let numCorrecta= 0
@@ -216,6 +219,12 @@ app.put('/capitales', async function(req, res) {
       res.send({chequeo: false});
   }
 });
+app.post('/capitales', async function(req, res) {
+  let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "geografia"`);   
+  let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf INNER JOIN Preguntasdef ON Respuestaspf.id_pregunta = Preguntasdef.id_pregunta WHERE Respuestaspf.id_pregunta = ${consulta[req.session.pregfacil].id_pregunta}`);
+  let consultapista= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf WHERE pista= '${consulta2[0].pista, consulta2[1].pista, consulta2[2].pista}'`);
+  res.send(consultapista)
+});
 
 /*JUEGO CIENCIA*/
 
@@ -223,6 +232,7 @@ app.get('/ciencia', async function(req, res)
 { console.log(req.query); 
     let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "ciencia"`);     
     let pregfacil= Math.ceil(Math.random()*consulta.length)-1;
+    req.session.pregfacil = pregfacil
     let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf INNER JOIN Preguntasdef ON Respuestaspf.id_pregunta = Preguntasdef.id_pregunta WHERE Respuestaspf.id_pregunta = ${consulta[pregfacil].id_pregunta}`);
     let correcta= ""
     let numCorrecta= 0
@@ -243,6 +253,12 @@ app.put('/ciencia', async function(req, res) {
   } else {
       res.send({chequeo: false});
   }
+});
+app.post('/ciencia', async function(req, res) {
+  let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "ciencia"`);   
+  let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf INNER JOIN Preguntasdef ON Respuestaspf.id_pregunta = Preguntasdef.id_pregunta WHERE Respuestaspf.id_pregunta = ${consulta[req.session.pregfacil].id_pregunta}`);
+  let consultapista= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf WHERE pista= '${consulta2[0].pista, consulta2[1].pista, consulta2[2].pista}'`);
+  res.send(consultapista)
 });
 
 

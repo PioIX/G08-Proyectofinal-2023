@@ -232,7 +232,7 @@
   <div class="dotWrapper dotWrapper-75">
     <div class="dot dot-75"></div>
   </div>
-</div>
+</div> 
     <!-- Icono -->
     <h1 class="titulogeo">{{Pregunta}}</h1>
         <input id="botonpreguntaGeo1" type="submit" class="fadeIn fourth btn-xs" value="{{Opcion1}}" onclick="checkRespuesta2(1, value, '{{Correcta}}', {{NumCorrecta}})">
@@ -240,3 +240,9 @@
         <input id="botonpreguntaGeo3" type="submit" class="fadeIn fourth btn-xs" value="{{Opcion3}}" onclick="checkRespuesta2(3, value, '{{Correcta}}', {{NumCorrecta}})">
     </div>
     </form>
+   </div> 
+
+  <div class="botonescapitales">
+    <input id="pista" type="submit" style="font-size: 20px; background-color: #FBB731; margin-top: 43%;" class="fadeIn first" value="PISTA" onclick="pidiopistageo()">
+    <input type="submit" style="margin-top:0%; background-color: #FBB731;" type="button" class="fadeIn first"  onclick='window.location.replace("/juega")' value="Volver">
+  </div>
