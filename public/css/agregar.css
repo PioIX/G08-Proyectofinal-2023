@@ -1,32 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-.PERRO{
-  margin-top: 20px;
- 
-}
-.boton{
-    margin-top: 100px;
-    background-color: #FF699F;
-    border-radius: 10px;
-    padding: 10px 20px;
-    color: #fff;
-    cursor: pointer;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    margin-top: 30px;
-}
+
 #h2elim {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 70px;
-    margin: 0;
-    color: black;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 70px;
+  color: black;
+  margin: 0; /* Elimina el margen predeterminado del h2 */
 }
 
 #CONTENIDOEDITAR {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   background: #FFFFFF;
-  width: 90%;
-  height: 250px;
+  width: 60%;
+  height: 500px;
   max-width: 1200px;
   position: absolute;
   top: 50%;
@@ -37,19 +23,13 @@
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
   text-align: center;
   font-family: 'Bebas Neue', sans-serif;
-  display: flex; /* Usa flexbox para centrar verticalmente */
-  flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
-  justify-content: center; /* Centra verticalmente los elementos hijos */
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
 }
-#idelim{
-  font-size: 25px;
-  margin-top: -15px;
+#agregarPregunta{
+  width: 400px;
 }
-
-#idPregunta{
-  width: 25%;
-}
-
 /* PUNTITOS*/
 .bgcien {
 position: fixed;
@@ -441,7 +421,7 @@ animation: flying 30s ease-in-out -2s infinite alternate;
  .bgcien .dot {
 width: 10px;
 height: 10px;
-background: #FF699F;
+background: #7894FF;
 border-radius: 50%;
 }
  .bgcien .dot-1 {
