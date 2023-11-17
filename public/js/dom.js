@@ -616,20 +616,25 @@ try {
   const result2 = await response2.json();
   console.log("Success:", result2);
   if (result2.chequeo == false) {
-    document.getElementById("botonpreguntaCien"+data4.numCorrecto).style.background = "lightgreen";
-    document.getElementById("botonpreguntaCien"+data4.numero).style.background = "pink";
     document.getElementById("botonpreguntaCien1").disabled = true;
-    document.getElementById("botonpreguntaCien2").disabled = true;
-    document.getElementById("botonpreguntaCien3").disabled = true;
-    delay(100).then(() => location.href = "/cienrepaso");
-  } else {
-      document.getElementById("botonpreguntaCien1").disabled = true;
       document.getElementById("botonpreguntaCien2").disabled = true;
       document.getElementById("botonpreguntaCien3").disabled = true;
       document.getElementById("botonpreguntaCien"+data4.numero).style.background = "lightgreen";
       delay(100).then(() => location.href = "/ciencia");
       puntaje++;
       console.log(puntaje)
+  } else {
+      if(result2.status == true){
+        location.href = "/score"
+      } else {
+        document.getElementById("botonpreguntaCien1").disabled = true;
+        document.getElementById("botonpreguntaCien2").disabled = true;
+        document.getElementById("botonpreguntaCien3").disabled = true;
+        document.getElementById("botonpreguntaCien"+data4.numero).style.background = "lightgreen";
+        delay(100).then(() => location.href = "/ciencia");
+        puntaje++;
+        console.log(puntaje)
+      }
   }
 } catch (error){
     console.error("Error:", error);

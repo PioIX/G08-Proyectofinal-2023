@@ -136,7 +136,7 @@ app.post("/login", async (req, res) => {
       email,
       password,
     });
-    
+    req.session.score = 0
     // Aquí puedes redirigir al usuario a la página que desees después del inicio de sesión exitoso
     if (email == "mvortega@pioix.edu.ar"){
       res.redirect("/admin")
@@ -246,14 +246,28 @@ app.get('/ciencia', async function(req, res)
                                                                                                                                
 });
 app.put('/ciencia', async function(req, res) {
+  if (req.session.score == undefined || req.session.correctas == undefined){
+    req.session.score = 0
+    req.session.correctas = 0
+  }
   console.log("Soy un pedido PUT /ciencia"); 
+  console.log(req.session.score)
   if (req.body.elegido == req.body.correcto) {
+      req.session.correctas ++
+      req.session.score++
+      if (req.session.score == 10){
+        res.send({chequeo: true, status: true});
+        req.session.score = 0
+      } else {
+        res.send({chequeo: true,  status: false});
+      }
       //await MySQL.realizarQuery(`UPDATE Estadisticaspf SET nota= nota+3 WHERE id_usuario="${req.session.id_usuario}" AND id_materia= "ciencia"`);
-      res.send({chequeo: true});
   } else {
+      req.session.score++
       res.send({chequeo: false});
   }
 });
+
 app.post('/ciencia', async function(req, res) {
   let consulta = await MySQL.realizarQuery(`SELECT * FROM Preguntasdef WHERE materia= "ciencia"`);   
   let consulta2= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf INNER JOIN Preguntasdef ON Respuestaspf.id_pregunta = Preguntasdef.id_pregunta WHERE Respuestaspf.id_pregunta = ${consulta[req.session.pregfacil].id_pregunta}`);
