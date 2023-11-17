@@ -1,24 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-.PERRO{
-  margin-top: 20px;
- 
-}
-.boton{
-    margin-top: 100px;
-    background-color: #FF699F;
-    border-radius: 10px;
-    padding: 10px 20px;
-    color: #fff;
-    cursor: pointer;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px;
-    margin-top: 30px;
-}
+
 #h2elim {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 70px;
-    margin: 0;
-    color: black;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 70px;
+  margin: 0; /* Elimina el margen predeterminado del h2 */
 }
 
 #CONTENIDOEDITAR {
@@ -41,12 +26,11 @@
   flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
   justify-content: center; /* Centra verticalmente los elementos hijos */
 }
-#idelim{
+#emailusu{
   font-size: 25px;
   margin-top: -15px;
 }
-
-#idPregunta{
+#idusuario{
   width: 25%;
 }
 
@@ -441,7 +425,7 @@ animation: flying 30s ease-in-out -2s infinite alternate;
  .bgcien .dot {
 width: 10px;
 height: 10px;
-background: #FF699F;
+background: #FBB731;
 border-radius: 50%;
 }
  .bgcien .dot-1 {
@@ -694,5 +678,4 @@ transform: translate(40px, 10px);
 }
 100% {
 transform: translate(0, 0);
-}
 }

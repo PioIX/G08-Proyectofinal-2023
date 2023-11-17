@@ -13,8 +13,9 @@
   }
   
   #repcienimg{
-    text-align:left;
+    text-align:center;
     display:flex;
+    size:300px;
   }
   
   #contrepcien{
