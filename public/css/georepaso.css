@@ -1,3 +1,15 @@
+.nenes {
+    max-width: 1000%; /* Ajusta el ancho máximo según tus necesidades */
+    margin-left: -350px; /* Mueve la imagen hacia la izquierda */
+    margin-top: -70px; /* Sube la imagen */
+    display: block; /* Asegura que la imagen sea un bloque */
+    margin-right: auto; /* Centra la imagen horizontalmente */
+    margin-bottom: 20px; /* Agrega margen inferior si es necesario */
+
+}
+.black{
+  color: black;
+}
 .reptitgeo{
     text-align:center;
     color: black;
@@ -11,7 +23,14 @@
     text-align:center;
     color: black;
   }
-  
+  .repbanderas11{
+    font-family:'Alata', sans-serif;
+    font-size:45px;
+    text-align:center;
+    color: black;
+    padding-top: 10px;
+    margin-left: 40px;
+  }
   #repbandimg{
     text-align:left;
     display:flex;

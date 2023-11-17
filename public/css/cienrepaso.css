@@ -5,6 +5,22 @@
     transition:0.5s;
     font-family:'Alata', sans-serif;
   }
+  .animalitos
+  {
+    margin-bottom: 40px;
+    margin-top: -60px;
+}
+  .animalll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-size: 45px;
+    transition: 0.5s;
+    margin-top: 30px;
+    font-family: 'Alata', sans-serif;
+}
+
   .repanimales{
     font-family: 'Urbanist', sans-serif;
     font-size:45px;
