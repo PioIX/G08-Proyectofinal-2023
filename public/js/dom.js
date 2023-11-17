@@ -603,6 +603,7 @@ putJSON3(data3);
 }
 
 /*CIENCIA*/
+let puntaje=0;
 async function putJSON4 (data4){   
 try {
   const response2 = await fetch("/ciencia", {
@@ -614,20 +615,21 @@ try {
   });
   const result2 = await response2.json();
   console.log("Success:", result2);
-
   if (result2.chequeo == false) {
     document.getElementById("botonpreguntaCien"+data4.numCorrecto).style.background = "lightgreen";
     document.getElementById("botonpreguntaCien"+data4.numero).style.background = "pink";
     document.getElementById("botonpreguntaCien1").disabled = true;
     document.getElementById("botonpreguntaCien2").disabled = true;
     document.getElementById("botonpreguntaCien3").disabled = true;
-    delay(4000).then(() => location.href = "/cienrepaso");
+    delay(100).then(() => location.href = "/cienrepaso");
   } else {
       document.getElementById("botonpreguntaCien1").disabled = true;
       document.getElementById("botonpreguntaCien2").disabled = true;
       document.getElementById("botonpreguntaCien3").disabled = true;
       document.getElementById("botonpreguntaCien"+data4.numero).style.background = "lightgreen";
-      delay(4000).then(() => location.href = "/ciencia");
+      delay(100).then(() => location.href = "/ciencia");
+      puntaje++;
+      console.log(puntaje)
   }
 } catch (error){
     console.error("Error:", error);
