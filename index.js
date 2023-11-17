@@ -227,6 +227,10 @@ app.post('/capitales', async function(req, res) {
 });
 
 /*JUEGO CIENCIA*/
+app.get("/estadisticaciencia", (req, res) => {
+  req.session.score = 0
+  res.render('estadisticaciencia', {NumCorrecta: req.session.correctas});
+});
 
 app.get('/ciencia', async function(req, res)
 { console.log(req.query); 
@@ -243,21 +247,31 @@ app.get('/ciencia', async function(req, res)
         }
     }
     res.render('ciencia', {NumCorrecta: numCorrecta, Correcta: correcta, Pregunta: consulta[pregfacil].pregunta, Opcion1:consulta2[0].respuesta, Opcion2:consulta2[1].respuesta, Opcion3:consulta2[2].respuesta});
-                                                                                                                               
 });
+
 app.put('/ciencia', async function(req, res) {
   if (req.session.score == undefined || req.session.correctas == undefined){
     req.session.score = 0
     req.session.correctas = 0
   }
   console.log("Soy un pedido PUT /ciencia"); 
-  console.log(req.session.score)
-  if (req.body.elegido == req.body.correcto) {
+  console.log("ELEGIDO", req.body.elegido)
+  console.log("CORRECTO", req.body.correcto)
+  console.log("SCORE", req.session.score)
+  console.log("CORRECTAS", req.session.correctas)
+  console.log("SESSION", req.session)
+  if (req.session.score === 10){
+    res.send("estadisticaciencia", { status: true, chequeo: true, correctas: req.session.score})
+  }
+  else{
+    if (req.body.elegido == req.body.correcto) {
       req.session.correctas ++
+      console.log(req.session.correctas, "req.sessioncorrect")
       req.session.score++
-      if (req.session.score == 10){
-        res.send({chequeo: true, status: true});
+      console.log(req.session.score,"req.sessionscore")
+      if (req.session.correctas == 10){
         req.session.score = 0
+        res.send({chequeo: true, status: true});
       } else {
         res.send({chequeo: true,  status: false});
       }
@@ -266,6 +280,8 @@ app.put('/ciencia', async function(req, res) {
       req.session.score++
       res.send({chequeo: false});
   }
+  }
+  
 });
 
 app.post('/ciencia', async function(req, res) {
@@ -274,7 +290,6 @@ app.post('/ciencia', async function(req, res) {
   let consultapista= await MySQL.realizarQuery(`SELECT * FROM Respuestaspf WHERE pista= '${consulta2[0].pista, consulta2[1].pista, consulta2[2].pista}'`);
   res.send(consultapista)
 });
-
 
 /*ESTADISTICA CIENCIA
 app.get('/estadisticaciencia', async function(req, res)
