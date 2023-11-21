@@ -15,7 +15,10 @@ a {
   text-decoration: none;
   font-weight: 400;
 }
-
+.BOTONESING{
+  display: space-between;
+  display-flex:space-between;
+}
 /* ESTRUCTURA */
 
 .wrapper {
