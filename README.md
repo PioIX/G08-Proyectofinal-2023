@@ -12,7 +12,7 @@ Echenique ✔️
 8. Creación de cada página con el uso de CSS. (20/10) Ortega-Rovera ✔️
 9. Relación de base de datos con las preguntas y respuesta correcta de cada
 materia(23/10) Ortega-Rovera✔️
-10. Uso de página admin(10/11) Ortega
-11. Funciones de interacción con la base (API)(15/11) Rovera
-12. Testeo (17/11)
-13. Puesta en producción (17/11)
+10. Uso de página admin(10/11) Ortega✔️
+11. Funciones de interacción con la base (API)(15/11) Rovera✔️
+12. Testeo (17/11)✔️
+13. Puesta en producción (17/11)✔️
