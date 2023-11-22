@@ -770,7 +770,7 @@ progressBar.style.transform = `scaleX(${state.score / 10})`
 
 // falta llamar la funcion clima cuando se carga la pagina de inicio
 async function clima()
-{temp ="Temperatura: " + await fetchClima()
+{temp ="Temperatura: " + await fetchClima()+ "  🌤"
 console.log(temp)
 //poner temp en algun elemento de la pagina para que se vea
 divClima=document.getElementById("clima")
