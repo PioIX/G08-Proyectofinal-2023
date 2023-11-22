@@ -397,7 +397,6 @@ app.get('/agregar', function(req, res)
     console.log("Soy un pedido GET /agregar", req.query); 
     res.render('agregar', null); 
 });
-
 app.post('/agregar', async function(req, res)
 {
     console.log("Soy un pedido POST/agregar", req.query); 

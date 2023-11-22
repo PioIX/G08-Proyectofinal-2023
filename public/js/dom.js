@@ -619,7 +619,7 @@ try {
       document.getElementById("botonpreguntaCien2").disabled = true;
       document.getElementById("botonpreguntaCien3").disabled = true;
       document.getElementById("botonpreguntaCien"+data4.numero).style.background = "lightgreen";
-      delay(100).then(() => location.href = "/ciencia");
+      delay(4000).then(() => location.href = "/ciencia");
       
   } else {
       if(result2.status == true){
@@ -629,7 +629,7 @@ try {
         document.getElementById("botonpreguntaCien2").disabled = true;
         document.getElementById("botonpreguntaCien3").disabled = true;
         document.getElementById("botonpreguntaCien"+data4.numero).style.background = "lightgreen";
-        delay(100).then(() => location.href = "/ciencia");
+        delay(4000).then(() => location.href = "/ciencia");
       }
   }
 } catch (error){
@@ -963,14 +963,12 @@ try {
 
 
 /*AGREGAR CONTENIDO!*/
-
 function agregarPreg() {
   let agregarpregunta = document.getElementById("agregarPregunta").value;
   let materia = document.getElementById("materia").value;
   let correcta = document.getElementById("correcta").value;
   let opcion1 = document.getElementById("opcion1").value;
   let opcion2 = document.getElementById("opcion2").value;
-
   let data = {
     agregarpregunta : agregarpregunta,
     materia : materia,
@@ -982,7 +980,6 @@ function agregarPreg() {
   console.log(data)
   fetchAgregarPregunta(data)
 }
-
 async function fetchAgregarPregunta(data) {
   try {
     const response = await fetch("/agregar", {
@@ -1003,11 +1000,11 @@ async function fetchAgregarPregunta(data) {
     } else if (result.validar==true && result.materia=="correcto" ){
         location.href = "/agregar";
     }
-
   } catch (error) {
     console.error("Error:", error);
   }
 }
+
 /*FUNCION ELIMINAR USUARIOS!*/
 function eliminarUsuarios() {
 let id = document.getElementById("idusuario").value
